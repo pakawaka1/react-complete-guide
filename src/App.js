@@ -8,7 +8,8 @@ class App extends Component {
       { name: 'Max', age: 28 },
       { name: 'Manu', age: 29 },
       { name: 'Stephanie', age: 30 }
-    ]
+    ],
+    otherState: 'some other value'
   };
 
   switchNameHandler = () => {
