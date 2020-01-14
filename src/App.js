@@ -3,24 +3,25 @@ import './App.css';
 
 import UserInput from './UserInput/UserInput';
 import UserOutput from './UserOutput/UserOutput';
+import Validation from './Validation/Validation';
 
 class App extends Component {
   state = {
-    username: 'Supermax'
+    userInput: ''
   };
-  usernameChangedHandler = event => {
-    this.setState({ username: event.target.value });
+  inputChangedHandler = event => {
+    this.setState({ userInput: event.target.value });
   };
   render() {
     return (
       <div className='App'>
-        <UserInput
-          changed={this.usernameChangedHandler}
-          currentName={this.state.username}
+        <input
+          type='text'
+          onChange={this.inputChangedHandler}
+          value={this.state.userInput}
         />
-        <UserOutput userName={this.state.username} />
-        <UserOutput userName={this.state.username} />
-        <UserOutput userName='Max' />
+        <p>{this.state.userInput}</p>
+        <Validation inputLength={this.state.userInput.length} />
       </div>
     );
   }
