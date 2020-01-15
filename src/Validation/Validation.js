@@ -8,6 +8,7 @@ const validation = props => {
   return (
     <div>
       <p>{validationMessage}</p>
+      <p>{props.character}</p>
     </div>
   );
 };

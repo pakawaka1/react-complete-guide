@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import UserInput from './UserInput/UserInput';
-import UserOutput from './UserOutput/UserOutput';
 import Validation from './Validation/Validation';
+import Char from './Char/Char';
 
 class App extends Component {
   state = {
@@ -12,7 +11,22 @@ class App extends Component {
   inputChangedHandler = event => {
     this.setState({ userInput: event.target.value });
   };
+  deleteCharHandler = index => {
+    const text = this.state.userInput.split('');
+    text.splice(index, 1);
+    const updatedText = text.join('');
+    this.setState({ userInput: updatedText });
+  };
   render() {
+    const charList = this.state.userInput.split('').map((e, index) => {
+      return (
+        <Char
+          character={e}
+          key={index}
+          clicked={() => this.deleteCharHandler(index)}
+        />
+      );
+    });
     return (
       <div className='App'>
         <input
@@ -22,6 +36,7 @@ class App extends Component {
         />
         <p>{this.state.userInput}</p>
         <Validation inputLength={this.state.userInput.length} />
+        {charList}
       </div>
     );
   }
